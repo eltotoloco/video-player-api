@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const history = new Map();
+const history = [];
 
 
 router.get("/",function(req,res, next){
@@ -8,9 +8,10 @@ router.get("/",function(req,res, next){
 });
 
 
-router.put('/', (req, res) => {
+router.post('/', (req, res) => {
     console.log(req.body)
-    res.status(400).send("Not implemented yet");
+    history.unshift(req.body)
+    res.status(200).send(JSON.stringify(history));
 });
 
 module.exports = router;
